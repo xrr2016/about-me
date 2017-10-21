@@ -80,7 +80,7 @@ canvas {
 }
 
 .contacts a:hover {
-  color: #3498db;
+  opacity: .8;
 }
 
 @media screen and (max-width: 768px) {

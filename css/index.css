@@ -67,20 +67,25 @@ canvas {
 }
 
 .contacts {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column wrap;
+  align-items: center;
   margin-top: 36px;
 }
 
 .contacts a {
   display: inline-block;
-  width: 50%;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 6px;
-  color: #ddd;
+  color: #fff;
   text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 
 .contacts a:hover {
-  opacity: .8;
+  /* opacity: .8; */
+  border-bottom: 1px solid #fff;
 }
 
 @media screen and (max-width: 768px) {

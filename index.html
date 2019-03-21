@@ -1,206 +1,498 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="author" content="xrr2016">
-  <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/78AAACM/wATf60ABk1rAP8AuwARls8AAPv/AAo3SgAA/yoAEEdeAOYA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAY0AIAAAAAAAGNIoAAAAAAABooAAAAAAAAIrCAAAAAAAIoMJwAAAAAAAADCcAAAAAAAAAJ5AAAAAAAAAHkQAAAAAAAACRUAAAAAAAAAkVAAAAAAAAABWwAAAAAAAABbsAAAAAAAAAuwAAAAAAAAAAD//wAAn/8AAI3/AADB/wAA4/8AAOH/AADI/wAA/H8AAP4/AAD/HwAA/48AAP/HAAD/4wAA//EAAP/5AAD//wAA"
-    rel="icon" type="image/x-icon" />
-  <title>轻剑快马</title>
-  <style>
-    html,
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      font-size: 62.5%;
-      background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB, #88cb7f);
-      background-size: 500% 500%;
-      animation: gradient 10s ease-in infinite;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", default;
-    }
-
-    @keyframes gradient {
-      0% {
-        background-position: 0% 50%
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="xrr2016" />
+    <link
+      href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/78AAACM/wATf60ABk1rAP8AuwARls8AAPv/AAo3SgAA/yoAEEdeAOYA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAY0AIAAAAAAAGNIoAAAAAAABooAAAAAAAAIrCAAAAAAAIoMJwAAAAAAAADCcAAAAAAAAAJ5AAAAAAAAAHkQAAAAAAAACRUAAAAAAAAAkVAAAAAAAAABWwAAAAAAAABbsAAAAAAAAAuwAAAAAAAAAAD//wAAn/8AAI3/AADB/wAA4/8AAOH/AADI/wAA/H8AAP4/AAD/HwAA/48AAP/HAAD/4wAA//EAAP/5AAD//wAA"
+      rel="icon"
+      type="image/x-icon"
+    />
+    <title>轻剑快马</title>
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        background: url(https://images.unsplash.com/photo-1552845312-844abcba21d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3168&q=80)
+          no-repeat center center fixed;
+        background-color: #bcdee7;
+        background-size: 120% auto;
+        position: fixed;
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        font: normal 14px/1.618em 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      body:before {
+        content: '';
+        height: 0px;
+        padding: 0px;
+        border: 110em solid #313440;
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        z-index: 2;
+        display: block;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: puff_portrait 0.5s 1.8s
+            cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards,
+          borderRadius 0.2s 2.3s linear forwards;
+      }
+      h1,
+      h2 {
+        font-weight: 400;
+        margin: 0px 0px 5px 0px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 16px;
+      }
+      p {
+        margin: 0px;
+      }
+      .profile-card {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 2;
+        display: block;
+        width: 56px;
+        height: 56px;
+        opacity: 0;
+        overflow: hidden;
+        background: #ffb300;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16),
+          0px 3px 6px rgba(0, 0, 0, 0.23);
+        animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+            forwards,
+          moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards,
+          moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+          materia_landscape 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+      }
+      .profile-card header {
+        width: 179px;
+        height: 280px;
+        padding: 40px 20px 30px 20px;
+        display: inline-block;
+        border-right: 2px dashed #eeeeee;
+        background: #ffffff;
+        color: #000000;
+        margin-top: 50px;
+        opacity: 0;
+        text-align: center;
+        animation: moveIn 1s 3.1s ease forwards;
+      }
+      .profile-card header h1 {
+        color: #ff5722;
       }
 
-      50% {
-        background-position: 100% 50%
+      .profile-card header h2 {
+        font-size: 0.9rem;
+      }
+      .profile-card header a {
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        margin: 25px 30px;
+      }
+      .profile-card .avatar {
+        width: 120px;
+        max-width: 100%;
+        border-radius: 50%;
+        transition: box-shadow 0.3s ease;
+        box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.06);
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      .profile-card .avatar:hover {
+        box-shadow: 0px 0px 0px 12px rgba(0, 0, 0, 0.1);
+      }
+      .profile-card .profile-bio {
+        width: 175px;
+        height: 180px;
+        display: inline-block;
+        padding: 50px 20px 30px 20px;
+        background: #ffffff;
+        color: #333333;
+        margin-top: 50px;
+        text-align: center;
+        opacity: 0;
+        animation: moveIn 1s 3.1s ease forwards;
       }
 
-      100% {
-        background-position: 0% 50%
+      .profile-bio-text {
+        font-size: 14px;
+        /* text-transform: uppercase; */
       }
-    }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: inherit;
-    }
+      .project-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
 
-    @font-face {
-      font-family: 'icomoon';
-      src: url('assets/fonts/icomoon.eot?yqw3uo');
-      src: url('assets/fonts/icomoon.eot?yqw3uo#iefix') format('embedded-opentype'),
-        url('assets/fonts/icomoon.ttf?yqw3uo') format('truetype'),
-        url('assets/fonts/icomoon.woff?yqw3uo') format('woff'),
-        url('assets/fonts/icomoon.svg?yqw3uo#icomoon') format('svg');
-      font-weight: normal;
-      font-style: normal;
-    }
+      .project-list__item {
+        padding: 4px 0;
+      }
 
-    [class^="icon-"],
-    [class*=" icon-"] {
-      /* use !important to prevent issues with browser extensions that change fonts */
-      font-family: 'icomoon' !important;
-      speak: none;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
+      .project-list__item > a {
+        color: inherit;
+        text-transform: uppercase;
+      }
 
-      /* Better Font Rendering =========== */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+      .profile-social-links {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0px;
+        padding: 15px 20px;
+        background: #ffffff;
+        margin-top: 50px;
+        text-align: center;
+        opacity: 0;
+        box-sizing: border-box;
+        animation: moveIn 1s 3.1s ease forwards;
+      }
+      .profile-social-links li {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        text-align: center;
+      }
 
-    .icon-juejin:before {
-      content: "\e904";
-    }
+      .profile-social-links li a {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        padding: 6px;
+        position: relative;
+        overflow: hidden !important;
+        border-radius: 50%;
+      }
 
-    .icon-blog:before {
-      content: "\e900";
-    }
+      /* .profile-social-links li a img {
+        position: relative;
+        z-index: 1;
+      } */
+      .profile-social-links li a:before {
+        display: block;
+        content: '';
+        background: rgba(0, 0, 0, 0.3);
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 36px;
+        height: 36px;
+        opacity: 1;
+        transition: transform 0.4s ease, opacity 1s ease-out;
+        transform: scale3d(0, 0, 1);
+        border-radius: 50%;
+      }
 
-    .icon-email:before {
-      content: "\e901";
-    }
+      .profile-social-links li a:hover:before {
+        animation: ripple 1s ease forwards;
+      }
 
-    .icon-github:before {
-      content: "\e902";
-    }
+      .profile-social-links svg {
+        width: 24px;
+      }
 
-    .icon-icon_resume:before {
-      content: "\e903";
-    }
+      .link-juejin {
+        margin-top: 2px;
+      }
 
-    .content {
-      position: relative;
-      color: #fff;
-      text-align: center;
-    }
+      .link-juejin svg {
+        width: 26px;
+      }
 
-    .avatar {
-      width: 7rem;
-      height: 7rem;
-      border-radius: 50%;
-      line-height: 0;
-    }
+      @media screen and (min-aspect-ratio: 4/3) {
+        body {
+          background-size: 100% auto;
+        }
+        body:before {
+          width: 0px;
+        }
 
-    .name {
-      margin: 1rem 0 .6rem 0;
-      font-size: 2.6rem;
-      letter-spacing: 1px;
-      border-bottom: 1px solid;
-    }
+        @keyframes puff {
+          0% {
+            top: 100%;
+            width: 0px;
+            padding-bottom: 0px;
+          }
+          100% {
+            top: 50%;
+            width: 100%;
+            padding-bottom: 100%;
+          }
+        }
+      }
+      @media screen and (min-height: 480px) {
+        .profile-card {
+          animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+              forwards,
+            moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards,
+            moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+            materia_portrait 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+        }
+        .profile-card header {
+          display: block;
+          width: auto;
+          height: auto;
+          padding: 30px 20px;
+          border-right: none;
+        }
+        .profile-card .profile-bio {
+          display: block;
+          width: auto;
+          height: auto;
+          padding: 15px 20px 30px 20px;
+        }
+      }
+      @media screen and (min-aspect-ratio: 4/3) {
+        body {
+          background-size: 100% auto;
+        }
+        body:before {
+          width: 0px;
+          animation: puff_landscape 0.5s 1.8s
+              cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards,
+            borderRadius 0.2s 2.3s linear forwards;
+        }
+      }
 
-    .contacts {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
+      @keyframes init {
+        0% {
+          width: 0px;
+          height: 0px;
+        }
+        100% {
+          width: 56px;
+          height: 56px;
+          margin-top: 0px;
+          opacity: 1;
+        }
+      }
 
-    .contacts a {
-      font-size: 2.5rem;
-      text-decoration: none;
-    }
+      @keyframes puff_portrait {
+        0% {
+          top: 100%;
+          height: 0px;
+          padding: 0px;
+        }
+        100% {
+          top: 50%;
+          height: 100%;
+          padding: 0px 100%;
+        }
+      }
 
-    .icon {
-      color: #fff;
-    }
+      @keyframes puff_landscape {
+        0% {
+          top: 100%;
+          width: 0px;
+          padding-bottom: 0px;
+        }
+        100% {
+          top: 50%;
+          width: 100%;
+          padding-bottom: 100%;
+        }
+      }
 
-    .email-address {
-      position: relative;
-      padding: 4px 6px;
-      visibility: hidden;
-      opacity: 0;
-      color: #333;
-      border-radius: 8px;
-      cursor: pointer;
-      background-color: #fff;
-    }
+      @keyframes borderRadius {
+        0% {
+          border-radius: 50%;
+        }
+        100% {
+          border-radius: 0px;
+        }
+      }
 
-    .email-address--show {
-      visibility: visible;
-      opacity: 1;
-    }
+      @keyframes moveDown {
+        0% {
+          top: 50%;
+        }
+        50% {
+          top: 40%;
+        }
+        100% {
+          top: 100%;
+        }
+      }
 
-    .email-address::before {
-      position: absolute;
-      content: "";
-      top: -7px;
-      right: 48px;
-      width: 0;
-      height: 0;
-      border: 4px solid transparent;
-      border-bottom-color: #fff;
-    }
-  </style>
-</head>
+      @keyframes moveUp {
+        0% {
+          background: #ffb300;
+          top: 100%;
+        }
+        50% {
+          top: 40%;
+        }
+        100% {
+          top: 50%;
+          background: #e0e0e0;
+        }
+      }
 
-<body>
-  <main class="content">
-    <img class="avatar" src="assets/avatar.png" alt="轻剑快马" title="轻剑快马">
-    <h1 class="name">轻剑快马</h1>
-    <section class="contacts">
-      <a href="https://github.com/xrr2016" rel="noopener noreferrer" target="_blank" title="Github"><i class="icon icon-github"></i></a>
-      <a href="https://juejin.im/user/576666b7207703006b1e0f09/posts" rel="noopener noreferrer" target="_blank" title="掘金"
-        style="transform: translateY(1px);"><i class="icon icon-juejin"></i></a>
-      <a href="http://www.qjkm.me" rel="noopener noreferrer" target="_blank" title="Blog"><i class="icon icon-blog"></i></a>
-      <a href="mailto:xiaoranran1993@outlook.com" rel="noopener noreferrer" title="Email"><i class="contacts__email icon icon-email"></i></a>
-      <a href="assets/肖然然的个人简历.pdf" target="_blank" rel="noopener noreferrer" title="Resume"><i class="icon icon-icon_resume"></i></a>
-    </section>
-    <div class="email-address" title="click to copy">xiaoranran1993@outlook.com</div>
-  </main>
+      @keyframes materia_landscape {
+        0% {
+          background: #e0e0e0;
+        }
+        50% {
+          border-radius: 4px;
+        }
+        100% {
+          width: 440px;
+          height: 280px;
+          background: #ffffff;
+          border-radius: 4px;
+        }
+      }
 
-  <script>
-    function clickToCopy(text, element, callback = null) {
-      const trigger = document.querySelector(element)
-      trigger.addEventListener("click", function () {
-        const tarea = document.createElement("textarea")
-        tarea.setAttribute("id", "copyarea" + Date.now())
-        tarea.setAttribute("readonly", "readonly")
-        tarea.setAttribute("style", "opacity: 0; position: absolute; z-index: -1; top: 0; left: -9999px;")
-        tarea.appendChild(document.createTextNode(text))
-        document.body.appendChild(tarea)
-        tarea.select()
-        document.execCommand("copy")
-        document.body.removeChild(tarea)
-        !!callback && typeof callback === 'function' && callback()
-      })
-    }
+      @keyframes materia_portrait {
+        0% {
+          background: #e0e0e0;
+        }
+        50% {
+          border-radius: 4px;
+        }
+        100% {
+          width: 280px;
+          height: 460px;
+          background: #ffffff;
+          border-radius: 4px;
+        }
+      }
 
-    clickToCopy('xiaoranran1993@outlook.com', '.email-address', function () {
-      address.classList.remove('email-address--show')
-    })
+      @keyframes moveIn {
+        0% {
+          margin-top: 50px;
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+          margin-top: -20px;
+        }
+      }
 
-    const email = document.querySelector('.contacts__email')
-    const address = document.querySelector('.email-address')
+      @keyframes scaleIn {
+        0% {
+          transform: scale(0);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
 
-    email.addEventListener('mouseover', function () {
-      address.classList.add('email-address--show')
-    })
+      @keyframes ripple {
+        0% {
+          transform: scale3d(0, 0, 0);
+        }
+        50%,
+        100% {
+          transform: scale3d(1, 1, 1);
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
 
-  </script>
-</body>
+  <body>
+    <main class="profile-card">
+      <header>
+        <a>
+          <img class="avatar" src="./assets/avatar.png" draggable="false" />
+        </a>
+        <h1>轻剑快马</h1>
+        <h2>Front End Developer</h2>
+      </header>
 
+      <div class="profile-bio">
+        <p class="profile-bio-text">Projects</p>
+
+        <ol class="project-list" type="I">
+          <li class="project-list__item">
+            <a href="//top-videos.xyz" target="_blank">top videos</a>
+          </li>
+
+          <li class="project-list__item">
+            <a href="//githubtrendingapi.xyz" target="_blank"> trending api</a>
+          </li>
+          <li class="project-list__item">
+            <a href="//xxchampion.xyz" target="_blank">xx champion</a>
+          </li>
+        </ol>
+      </div>
+
+      <ul class="profile-social-links">
+        <li>
+          <a class="link-github" href="https://www.facebook.com/v1ctory">
+            <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              ></path>
+            </svg>
+          </a>
+        </li>
+
+        <li>
+          <a
+            class="link-juejin"
+            href="http://themeforest.net/user/Victory-Design"
+          >
+            <svg viewBox="0 0 1272 1024" version="1.1" aria-hidden="true">
+              <path
+                fill="#006cff"
+                d="M729.641 165.277l-95.314-75.152-99.563 78.527-5.179 4.16 104.742 83.503 105.09-83.503-9.776-7.535zm361.212 291.472L634.065 816.943l-456.498-359.99-67.442 54.174 523.94 413.118 524.23-413.35-67.442-54.146zM634.065 485.96L385.478 290.006l-67.412 54.117 315.97 249.168 316.29-249.4-67.413-54.146L634.065 485.96z"
+              />
+            </svg>
+          </a>
+        </li>
+
+        <li>
+          <a class="link-juejin" href="https://codepen.io/VictoryDesign/">
+            <svg viewBox="0 0 1285 1024" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill="#f6c343"
+                d="M986.264 882.789H227.441a86.23 86.23 0 0 1-86.23-86.23V227.44a86.23 86.23 0 0 1 86.23-86.23h758.823a86.23 86.23 0 0 1 86.23 86.23V796.56a86.23 86.23 0 0 1-86.23 86.23zM210.195 779.313a34.492 34.492 0 0 0 34.492 34.492h724.331a34.492 34.492 0 0 0 34.492-34.492v-462.71L634.274 591.332a73.002 73.002 0 0 1-54.842 0L210.195 327.985v451.328zm758.823-569.118h-724.33a34.354 34.354 0 0 0-34.355 33.113l396.244 282.661 386.086-287.318a45.288 45.288 0 0 1 9.071-4.484 34.492 34.492 0 0 0-32.716-23.972z"
+              />
+            </svg>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://codepen.io/VictoryDesign/">
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill="#999bf8"
+                d="M846 67H178c-16.5 0-30 13.5-30 30v836c0 16.5 13.5 30 30 30h668c16.5 0 30-13.5 30-30V97c0-16.5-13.5-30-30-30zm-10 856H188V107h648v816z"
+              />
+              <path
+                fill="#999bf8"
+                d="M690.7 605.7c-11.2 0-20.3-9.1-20.3-20.3 0-87.3-71-158.3-158.3-158.3-87.3 0-158.3 71-158.3 158.3 0 11.2-9.1 20.3-20.3 20.3-11.2 0-20.3-9.1-20.3-20.3 0-40.8 12.3-80 35.5-113.4 22.7-32.6 54.2-57.5 91.1-72l3.1-1.2-2.5-2.2c-24-20.9-37.8-51.1-37.8-82.8 0-60.5 49.2-109.7 109.7-109.7S622 253.3 622 313.8c0 31.8-13.8 62-37.8 82.8l-2.5 2.2 3.1 1.2c36.9 14.4 68.3 39.3 91.1 72 23.2 33.4 35.5 72.6 35.5 113.4-.4 11.2-9.5 20.3-20.7 20.3zM512 244.8c-38 0-69 31-69 69s31 69 69 69 69-31 69-69-31-69-69-69zM262 731h500c11 0 20-9 20-20s-9-20-20-20H262c-11 0-20 9-20 20s9 20 20 20zm0 100h500c11 0 20-9 20-20s-9-20-20-20H262c-11 0-20 9-20 20s9 20 20 20z"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </main>
+  </body>
 </html>

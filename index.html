@@ -14,20 +14,19 @@
       type="image/x-icon"
     />
     <title>轻剑快马</title>
+
     <style>
       html {
         height: 100%;
       }
       body {
-        background: url(https://images.unsplash.com/photo-1552845312-844abcba21d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3168&q=80)
-          no-repeat center center fixed;
-        background-color: #bcdee7;
-        background-size: 120% auto;
         position: fixed;
         padding: 0px;
         margin: 0px;
         width: 100%;
         height: 100%;
+        background: url(./assets/bg.jpeg) no-repeat center center fixed;
+        background-color: #bcdee7;
         font: normal 14px/1.618em 'Roboto', sans-serif;
         -webkit-font-smoothing: antialiased;
       }
@@ -151,6 +150,11 @@
       .project-list__item > a {
         color: inherit;
         text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .project-list__item > a:hover {
+        text-decoration: underline;
       }
 
       .profile-social-links {
@@ -185,10 +189,6 @@
         border-radius: 50%;
       }
 
-      /* .profile-social-links li a img {
-        position: relative;
-        z-index: 1;
-      } */
       .profile-social-links li a:before {
         display: block;
         content: '';
@@ -212,6 +212,12 @@
         width: 24px;
       }
 
+      .link-github,
+      .link-github svg {
+        width: 22px;
+        height: 22px;
+      }
+
       .link-juejin {
         margin-top: 2px;
       }
@@ -220,25 +226,18 @@
         width: 26px;
       }
 
+      .link-resume,
+      .link-resume svg {
+        width: 23px;
+        height: 23px;
+      }
+
       @media screen and (min-aspect-ratio: 4/3) {
         body {
           background-size: 100% auto;
         }
         body:before {
           width: 0px;
-        }
-
-        @keyframes puff {
-          0% {
-            top: 100%;
-            width: 0px;
-            padding-bottom: 0px;
-          }
-          100% {
-            top: 50%;
-            width: 100%;
-            padding-bottom: 100%;
-          }
         }
       }
       @media screen and (min-height: 480px) {
@@ -390,15 +389,6 @@
         }
       }
 
-      @keyframes scaleIn {
-        0% {
-          transform: scale(0);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-
       @keyframes ripple {
         0% {
           transform: scale3d(0, 0, 0);
@@ -443,7 +433,12 @@
 
       <ul class="profile-social-links">
         <li>
-          <a class="link-github" href="https://www.facebook.com/v1ctory">
+          <a
+            class="link-github"
+            target="_blank"
+            title="Github"
+            href="https://github.com/xrr2016"
+          >
             <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true">
               <path
                 fill-rule="evenodd"
@@ -452,11 +447,12 @@
             </svg>
           </a>
         </li>
-
         <li>
           <a
             class="link-juejin"
-            href="http://themeforest.net/user/Victory-Design"
+            title="掘金"
+            target="_blank"
+            href="https://juejin.im/user/576666b7207703006b1e0f09/posts"
           >
             <svg viewBox="0 0 1272 1024" version="1.1" aria-hidden="true">
               <path
@@ -468,8 +464,13 @@
         </li>
 
         <li>
-          <a class="link-juejin" href="https://codepen.io/VictoryDesign/">
-            <svg viewBox="0 0 1285 1024" xmlns="http://www.w3.org/2000/svg">
+          <a
+            class="link-juejin"
+            target="_blank"
+            title="邮箱"
+            href="mailto:xiaoranran1993@outlook.com"
+          >
+            <svg viewBox="0 0 1285 1024">
               <path
                 fill="#f6c343"
                 d="M986.264 882.789H227.441a86.23 86.23 0 0 1-86.23-86.23V227.44a86.23 86.23 0 0 1 86.23-86.23h758.823a86.23 86.23 0 0 1 86.23 86.23V796.56a86.23 86.23 0 0 1-86.23 86.23zM210.195 779.313a34.492 34.492 0 0 0 34.492 34.492h724.331a34.492 34.492 0 0 0 34.492-34.492v-462.71L634.274 591.332a73.002 73.002 0 0 1-54.842 0L210.195 327.985v451.328zm758.823-569.118h-724.33a34.354 34.354 0 0 0-34.355 33.113l396.244 282.661 386.086-287.318a45.288 45.288 0 0 1 9.071-4.484 34.492 34.492 0 0 0-32.716-23.972z"
@@ -479,8 +480,13 @@
         </li>
 
         <li>
-          <a href="https://codepen.io/VictoryDesign/">
-            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+          <a
+            class="link-resume"
+            href="./assets/肖然然的个人简历.pdf"
+            target="_blank"
+            title="简历"
+          >
+            <svg viewBox="0 0 1024 1024">
               <path
                 fill="#999bf8"
                 d="M846 67H178c-16.5 0-30 13.5-30 30v836c0 16.5 13.5 30 30 30h668c16.5 0 30-13.5 30-30V97c0-16.5-13.5-30-30-30zm-10 856H188V107h648v816z"
